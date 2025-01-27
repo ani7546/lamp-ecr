@@ -43,6 +43,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: lamp-task.json
-          service: lamp-service
+          service: ecslamp-service
           cluster: lamp-cluster
           region: ap-south-1
