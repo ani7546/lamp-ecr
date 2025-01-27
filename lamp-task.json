@@ -1,0 +1,47 @@
+{
+    "family": "lamp-taskes", 
+    "networkMode": "awsvpc", 
+    "containerDefinitions": [
+      {
+        "name": "lamp-app-container",
+        "image": "688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app:latest", 
+        "memory": 512,
+        "cpu": 256,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 80, 
+            "hostPort": 80, 
+            "protocol": "tcp"
+          }
+        ],
+        "environment": [
+          {
+            "name": "DB_HOST",
+            "value": "database-lamp.c3aewga6addq.ap-south-1.rds.amazonaws.com"  
+          },
+          {
+            "name": "DB_USER",
+            "value": "admin"
+          },
+          {
+            "name": "DB_PASSWORD",
+            "value": "Animesh530"
+          },
+          {
+            "name": "DB_NAME",
+            "value": "lamp_db"
+          }
+        ]
+      }
+    ],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256", 
+    "memory": "512", 
+    "networkMode": "awsvpc", 
+    "executionRoleArn": "arn:aws:iam::688567291323:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::688567291323:role/ecsTaskRole"
+  }
+  
