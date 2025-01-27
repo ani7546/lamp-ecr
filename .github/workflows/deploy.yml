@@ -42,7 +42,7 @@ jobs:
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: lamp-task
+          task-definition: lamp-task.json
           service: lamp-service
           cluster: lamp-cluster
           region: ap-south-1
