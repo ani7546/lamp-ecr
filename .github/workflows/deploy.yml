@@ -18,31 +18,21 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ap-south-1  # Hardcoded AWS Region for debugging
+
       - name: Print Secrets
         run: |
-          echo "AWS_REGION=${{ secrets.AWS_REGION }}"
-          echo "ECR_REPOSITORY_URI=${{ secrets.ECR_REPOSITORY_URI }}"
-
+          echo "AWS_REGION=ap-south-1"
+          echo "ECR_REPOSITORY_URI=688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app"
 
       - name: Authenticate to Amazon ECR
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
-          docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY_URI }}
+          aws ecr get-login-password --region ap-south-1 | \
+          docker login --username AWS --password-stdin 688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app
 
       - name: Build Docker Image
         run: |
           docker build -t lamp-app .
-          docker tag lamp-app:latest ${{ secrets.ECR_REPOSITORY_URI }}:latest
+          docker tag lamp-app:latest 688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app:latest
 
-      - name: Push Docker Image to ECR
-        run: |
-          docker push ${{ secrets.ECR_REPOSITORY_URI }}:latest
-
-      - name: Deploy to ECS
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: lamp-task
-          service: lamp-service
-          cluster: lamp-cluster
-          region: ${{ secrets.AWS_REGION }}
+      - name: Push Docker Im
