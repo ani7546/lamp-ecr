@@ -35,4 +35,14 @@ jobs:
           docker build -t lamp-app .
           docker tag lamp-app:latest 688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app:latest
 
-      - name: Push Docker Im
+      - name: Push Docker Image to ECR
+        run: |
+          docker push 688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app:latest
+
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: lamp-task
+          service: lamp-service
+          cluster: lamp-cluster
+          region: ap-south-1
