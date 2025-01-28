@@ -1,5 +1,5 @@
 <?php
-define("DB_SERVER", "database-lamp.c3aewga6addq.ap-south-1.rds.amazonaws.com");
+define("DB_SERVER", "database-ecs.c3aewga6addq.ap-south-1.rds.amazonaws.com");
 define("DB_USERNAME", "admin");
 define("DB_PASSWORD", "Animesh530");
 define("DB_NAME", "lamp_db");
