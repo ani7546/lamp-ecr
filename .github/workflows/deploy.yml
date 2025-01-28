@@ -55,6 +55,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition:  ${{ steps.update-task.outputs.task-definition }}
-          service: ecs-lamp-services
+          service: ecs-lamp-service
           cluster: ecs-lamp-cluster
           wait-for-service-stability: true
