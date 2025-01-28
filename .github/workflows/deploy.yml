@@ -48,7 +48,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: lamp-app-container  # Correct container name from your task definition
+          container-name: lamp-container  # Correct container name from your task definition
           image: 688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app:latest
 
       - name: Deploy to ECS
