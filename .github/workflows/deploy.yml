@@ -31,10 +31,19 @@ jobs:
           tags: 688567291323.dkr.ecr.ap-south-1.amazonaws.com/lamp-app:latest
           context: .
 
+
+      - name: Register Task Definition
+        run: |
+          echo "${{ secrets.LAMP_TASK_DEFINITION }}" > lamp-task.json
+          aws ecs register-task-definition \
+            --family lamp-task \
+            --container-definitions file://lamp-task.json \
+            --region ap-south-1
+
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: lamp-task.json
+          task-definition: ecs-lamp-task.json
           service: ecs-lamp-services
           cluster: ecs-lamp-cluster
           region: ap-south-1
