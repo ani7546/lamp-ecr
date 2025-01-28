@@ -18,7 +18,7 @@
         "environment": [
           {
             "name": "DB_HOST",
-            "value": "database-lamp.c3aewga6addq.ap-south-1.rds.amazonaws.com"  
+            "value": "database-ecs.c3aewga6addq.ap-south-1.rds.amazonaws.com"  
           },
           {
             "name": "DB_USER",
